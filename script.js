@@ -1,4 +1,36 @@
 // ========================================
+// MOBILE MENU TOGGLE FUNCTIONALITY
+// ========================================
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+const navMenu = document.querySelector(".nav-menu")
+
+if (mobileMenuToggle && navMenu) {
+  mobileMenuToggle.addEventListener("click", () => {
+    mobileMenuToggle.classList.toggle("active")
+    navMenu.classList.toggle("active")
+    document.body.style.overflow = navMenu.classList.contains("active") ? "hidden" : ""
+  })
+
+  // Close menu when clicking on a nav link
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenuToggle.classList.remove("active")
+      navMenu.classList.remove("active")
+      document.body.style.overflow = ""
+    })
+  })
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+      mobileMenuToggle.classList.remove("active")
+      navMenu.classList.remove("active")
+      document.body.style.overflow = ""
+    }
+  })
+}
+
+// ========================================
 // SMOOTH SCROLL & ACTIVE NAV LINKS
 // ========================================
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -247,6 +279,7 @@ if ("IntersectionObserver" in window) {
 }
 
 // ========================================
+// CURSOR ANIMATION
 // ========================================
 let mouseX = 0,
   mouseY = 0
@@ -267,6 +300,7 @@ function animateCursor() {
 animateCursor()
 
 // ========================================
+// SCROLL PROGRESS BAR
 // ========================================
 window.addEventListener("scroll", () => {
   const winScroll = document.body.scrollTop || document.documentElement.scrollTop
@@ -293,6 +327,7 @@ window.addEventListener("scroll", () => {
 })
 
 // ========================================
+// SPEC CARD AND TESTIMONIAL HOVER EFFECTS
 // ========================================
 document.querySelectorAll(".spec-card, .testimonial").forEach((card) => {
   card.addEventListener("mousemove", (e) => {
@@ -315,6 +350,7 @@ document.querySelectorAll(".spec-card, .testimonial").forEach((card) => {
 })
 
 // ========================================
+// PORTFOLIO ITEM AND TESTIMONIAL REVEAL ANIMATION
 // ========================================
 const revealElements = document.querySelectorAll(".portfolio-item, .testimonial")
 const revealObserver = new IntersectionObserver(
@@ -340,6 +376,7 @@ revealElements.forEach((el) => {
 })
 
 // ========================================
+// SHAKE ANIMATION KEYFRAMES
 // ========================================
 const style = document.createElement("style")
 style.textContent = `
